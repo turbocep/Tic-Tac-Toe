@@ -1,0 +1,21 @@
+A 3x3 board of tiles numbered 1-9 is displayed to the player. The
+player and bot can choose to replace one number during their turn 
+with their symbol (X for player and O for bot). The player who
+gets three of their symbols in a row, column or diagonally wins. If neither bot or player wins, it's a tie. 
+
+I'm not sure what I'm supposed to use classes for. I don't get their purpose here. 
+
+The UI is the console. 
+
+Input for the user is received by being prompted to enter an integer from one to nine that still remains available on the board. The bot provides the same type of input but chooses their play randomly. 
+
+Output is printed to the screen in the form of a word of results and messages.
+
+Sample board:
+
+1 | 2 | 3
+---------
+4 | 5 | 6
+---------
+7 | 8 | 9
+
