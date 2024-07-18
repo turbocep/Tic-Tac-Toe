@@ -3,14 +3,14 @@
 
 class Board
   def initialize
-    @board = [[1,2,3], [4,5,6], [7,8,9]]
+    @board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
   end
 
   #Basic paint function is good enough for now while the main
   #algorithm is the big priority. 
   def paint
     for i in 0..2 do
-      p @board[i]
+      p @board[(i * 3)...(i * 3 + 3)]
     end
   end
 
@@ -21,6 +21,6 @@ new_board = Board.new()
 
 new_board.paint
 
-new_board.board[1][1] = "X"
 
-new_board.paint
+
+
