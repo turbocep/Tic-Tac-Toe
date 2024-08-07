@@ -11,7 +11,7 @@ end
 # The main board.
 class Board < Game
   def initialize
-    @board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    @board = [1, 2, 3, 4, 5, 6, 7 , 8, 9]
   end
 
   def show
@@ -24,6 +24,10 @@ class Board < Game
         print " #{element}"
       end
     end
+  end
+
+  def available_moves
+    @board.reject { |slot| ["X", "O"].include?(slot) }
   end
 end
 
@@ -47,4 +51,5 @@ class Player < Game
   end
 end
 
-player = Player.new('Bob', 'X', true)
+board = Board.new
+puts board.available_moves
