@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# The main board.
 class Board
   def initialize
     @board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -18,7 +19,15 @@ class Board
   end
 end
 
+# Player class
 class Player
+  attr_reader :name, :symbol, :bot
+
+  def initialize(name, symbol, bot)
+    self.name = name
+    self.symbol = symbol
+    self.bot = bot
+  end
 end
 
 board = Board.new
