@@ -1,3 +1,4 @@
+# rubocop: disable all
 # frozen_string_literal: true
 
 # The game class.
@@ -8,7 +9,7 @@ class Game
 end
 
 # The main board.
-class Board
+class Board < Game
   def initialize
     @board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
   end
@@ -27,7 +28,7 @@ class Board
 end
 
 # Player class
-class Player
+class Player < Game
   attr_reader :name, :symbol, :bot
 
   def initialize(name, symbol, bot)
@@ -35,8 +36,15 @@ class Player
     self.symbol = symbol
     self.bot = bot
   end
+
+  # Available is an array of slots that can still be played.
+  def choose_move(available)
+    if bot
+      available.sample
+    else
+      gets.to_i
+    end
+  end
 end
 
-board = Board.new
-
-board.show
+player = Player.new('Bob', 'X', true)

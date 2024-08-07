@@ -23,6 +23,15 @@ Board, player, game?
 Board class: 
   Stores the board.
   Prints the board to the screen.
+  Verifies input. 
+
+Game:
+  Starts game.
+  Prints game messages.
+  Selects whose turn it is and asks for their input. 
+
+Player:
+  Asked for input.
 
 Actions left to figure-out:
   Checking results of board.
