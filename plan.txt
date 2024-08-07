@@ -18,7 +18,19 @@ Sample board:
 7 8 9
 
 Classes needed:
-Board, player, slot. 
+Board, player, game?
+
+Board class: 
+  Stores the board.
+  Prints the board to the screen.
+
+Actions left to figure-out:
+  Checking results of board.
+  Storing rounds (game).
+  Receiving input from players.
+  Validating input from players. 
+  Set a game mode to play against yourself. 
+  Replacing tiles when valid player input is provided. 
 
 
 

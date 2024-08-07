@@ -1,5 +1,12 @@
 # frozen_string_literal: true
 
+# The game class.
+class Game
+  def initialize
+    @round = 1
+  end
+end
+
 # The main board.
 class Board
   def initialize
