@@ -5,6 +5,9 @@
 class Game
   def initialize
     @round = 1
+    @board = Board.new([1, 2, 3, 4, 5, 6, 7, 8, 9])
+    @player1 = Player.new("player1", "X", false)
+    @player2 = Player.new("player2", "O", true)
   end
 end
 
@@ -52,7 +55,7 @@ end
 
 # Player class
 class Player < Game
-  attr_reader :name, :symbol, :bot
+  attr_accessor :name, :symbol, :bot
 
   def initialize(name, symbol, bot)
     self.name = name
@@ -70,8 +73,6 @@ class Player < Game
   end
 end
 
-board1 = Board.new(["X", 2, 3, 4, "X", 6, 7, 8, "X"])
-
-board1.check_for_wins
+game = Game.new()
 
 #TODO(Turbocep): Create Board and Players from Game class. No user input for player details currently. Create players => call player for input => get input, change board, change round, get other player's input. You can base whose turn it is based on odd and even numbers. The first player created starts first. 
