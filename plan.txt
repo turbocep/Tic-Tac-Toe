@@ -41,5 +41,8 @@ Actions left to figure-out:
   Set a game mode to play against yourself. 
   Replacing tiles when valid player input is provided. 
 
+Further upgrades:
+  Enable multiple-round playing. User must input if they'd like to continue playing the game. A class variable in Game tracks how many rounds were played. 
+
 
 
