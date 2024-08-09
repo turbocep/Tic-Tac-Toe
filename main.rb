@@ -42,10 +42,10 @@ class Board < Game
   end
 
   def show
-    @board.each do |element|
-      if [3, 6].include?(element)
+    @board.each_with_index do |element, index|
+      if [2, 5].include?(index)
         puts " #{element}"
-      elsif element == 9
+      elsif index == 8
         puts " #{element}"
       else
         print " #{element}"
