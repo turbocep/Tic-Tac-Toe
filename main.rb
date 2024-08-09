@@ -13,6 +13,7 @@ class Game
     puts "Starting game."
     @board.show
     i = 0
+    won = false
     while @round <= 9
       current_player = @players[i]
 
@@ -20,11 +21,17 @@ class Game
       move = current_player.choose_move(@board.available_moves)
       @board.update(move, current_player.symbol)
       @board.show
-      
-      @round += 1
 
       i = i == 0 ? 1 : 0
+
+      if @round >= 5
+        won = @board.check_for_wins
+      end
+      puts @round
+      @round += 1
+      break if won
     end
+    puts "Game over."
   end
 end
 
@@ -65,6 +72,7 @@ class Board < Game
   def check_for_wins
     win_combos = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
 
+    won = false
 
     ["X", "O"].each do |symbol|
       win_combos.each do |combo|
@@ -74,10 +82,11 @@ class Board < Game
         end
         if new_arr.all?(symbol)
           puts "#{symbol} won!"
-          break
+          won = true
         end
       end
     end
+    won
   end
 end
 
