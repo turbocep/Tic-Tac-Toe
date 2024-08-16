@@ -23,21 +23,23 @@ class Game
 
       i = i.zero? ? 1 : 0
 
-      won = @board.check_for_wins if @round >= 5
+      won = @board.win? if @round >= 5
       puts @round
       @round += 1
       break if won
     end
     puts 'Game over.'
+    if won
+      if @round.even?
+        puts 'Player 1 won.'
+      else
+        puts 'Player 2 won.'
+      end
+    else
+      puts "It's a tie."
+    end
   end
 end
-
-# LOOP while nobody has won and there are turns left.
-# Show the board.
-# IF it's player1's turn, ask for their input.
-#   Modify board with player1's input.
-# ELSE IF it's player2's turn, asl for their input.
-#   Modify board with player2's input.
 
 # The main board.
 class Board < Game
@@ -66,24 +68,12 @@ class Board < Game
   end
 
   # Start calling this method when @round >= 5.
-  def check_for_wins
+  def win?
     win_combos = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
 
-    won = false
-
-    %w[X O].each do |symbol|
-      win_combos.each do |combo|
-        new_arr = []
-        combo.each do |i|
-          new_arr.push(@board[i])
-        end
-        if new_arr.all?(symbol)
-          puts "#{symbol} won!"
-          won = true
-        end
-      end
+    win_combos.any? do |combo|
+      [@board[combo[0]], @board[combo[1]], @board[combo[2]]].uniq.length == 1
     end
-    won
   end
 end
 
