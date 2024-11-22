@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Stores and manipulates board
 class Board
   def initialize(board = Array.new(3) { Array.new(3, ' ') })
@@ -11,7 +13,7 @@ class Board
   end
 
   # Command method
-  def render_board
+  def render_board # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
     @board_string = <<~HEREDOC
             1     2     3
           _____ _____ _____
@@ -42,5 +44,11 @@ class Board
       return true if unique.length == 1 && unique != [' ']
     end
     false
+  end
+
+  def available_moves
+    @board.flatten.map.with_index do |element, index|
+      index if element == ' '
+    end.compact
   end
 end
