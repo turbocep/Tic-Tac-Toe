@@ -3,9 +3,9 @@ require_relative '../lib/board'
 describe Board do
   describe '#initialize' do
     context 'when board is constructed' do
-      it "creates 3x3 array of ' '" do
+      it "creates 1x9 array of ' '" do
         result = Board.new.instance_variable_get('@board')
-        expectation = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
+        expectation = Array.new(9, ' ')
         expect(result).to eql(expectation)
       end
     end
@@ -14,21 +14,13 @@ describe Board do
   describe '#win?' do
     context 'when board is empty' do
       it 'returns false' do
-        board = Board.new([
-                            [' ', ' ', ' '],
-                            [' ', ' ', ' '],
-                            [' ', ' ', ' ']
-                          ])
+        board = Board.new
         expect(board.win?).to be false
       end
     end
     context 'when no winning conditions' do
       it 'returns false' do
-        board = Board.new([
-                            %w[X O O],
-                            %w[O X X],
-                            %w[X O O]
-                          ])
+        board = Board.new(%w[X O O O X X X O O])
         expect(board.win?).to be false
       end
     end
@@ -120,6 +112,31 @@ describe Board do
                             ])
           expect(board.win?).to be true
         end
+      end
+    end
+  end
+  describe '#available_moves' do
+    context 'empty board' do
+      it 'returns empty indexes' do
+        board = Board.new
+        expected_result = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+        expect(board.available_moves).to eql(expected_result)
+      end
+    end
+    context 'full board' do
+      it 'returns empty array' do
+        board = Board.new([
+                              %w[X X O],
+                              %w[O O X],
+                              %w[O X X]
+                            ])
+        expect(board.available_moves).to eql([])
+      end
+    end
+    context 'partially-filled board' do
+      it 'returns empty indexes' do
+        board = Board.new([' ', 'X', ' ','O', ' ', 'X', 'X', ' ', ' '])
+        expect(board.available_moves).to eql([0, 2, 4, 7, 8])
       end
     end
   end
